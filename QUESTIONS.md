@@ -92,7 +92,7 @@ The model was uploaded to https://huggingface.co/rgtlai/ai-policy-ft. The notebo
 
 I choose the Snowflake/snowflake-arctic-embed-m embedding model because it is lightweight as it has embedding dimension of 768 and 110 million parameters. It should perform well when it it is fine tuned.
 
-I 
+I was able to fine tune it but for some reason Ragas was not running the way it did before. Perhaps I have some library conflict that will be resolved in a later date. For now the model seems to be running. It seems to work just as well as the "text-embedding-3-small" even though the notebook notebook src/sdg/Fine_Tuned.ipynb showed it was able to be trained but  src/sdg/Fine_Tuned2.ipynb was not able to run with RAGAS unlike src/sdg/Ragas.ipynb
 
 ## 5. Test the fine-tuned embedding model using the RAGAS frameworks to quantify any improvements.  Provide results in a table. Test the two chunking strategies using the RAGAS frameworks to quantify any improvements. Provide results in a table. Which one is the best to test with internal stakeholders next week, and why
 
