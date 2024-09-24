@@ -11,7 +11,7 @@ from .context_agent import ContextAgent
 from .rag_agent import RagChat
 from langgraph.checkpoint.memory import MemorySaver
 from langchain_core.messages import HumanMessage, AIMessageChunk
-from ..vectorstore.get import retriever
+from ..vectorstore.get import retriever, retriever_ft
 
 load_dotenv()
 memory = MemorySaver()
@@ -20,7 +20,7 @@ app = None
 llm = ChatOpenAI(temperature=0, model=os.environ["OPENAI_MODEL"], streaming=True)
 graph = StateGraph(State)
 _context_agent = ContextAgent(llm=llm)
-_rag_agent = RagChat(llm=llm, retriever=retriever)
+_rag_agent = RagChat(llm=llm, retriever=retriever_ft)
 
 graph.add_node('context_agent', _context_agent)
 graph.add_node('chatrag_agent', _rag_agent)

@@ -90,7 +90,9 @@ We also implemented streaming through LangGraph/LangChain's astream_events, enab
 
 The model was uploaded to https://huggingface.co/rgtlai/ai-policy-ft. The notebook that shows the training can be seen at src/sdg/Fine_Tuned.ipynb and src/sdg/Fine_Tuned2.ipynb. 
 
-I choose the 
+I choose the Snowflake/snowflake-arctic-embed-m embedding model because it is lightweight as it has embedding dimension of 768 and 110 million parameters. It should perform well when it it is fine tuned.
+
+I 
 
 ## 5. Test the fine-tuned embedding model using the RAGAS frameworks to quantify any improvements.  Provide results in a table. Test the two chunking strategies using the RAGAS frameworks to quantify any improvements. Provide results in a table. Which one is the best to test with internal stakeholders next week, and why
 

@@ -26,7 +26,6 @@ generator = TestsetGenerator.from_langchain(
     embeddings
 )
 
-
 distributions = {
     simple: 0.5,
     multi_context: 0.4,
