@@ -1,4 +1,5 @@
 import os
+import hashlib
 from dotenv import load_dotenv
 from langchain_openai import OpenAIEmbeddings
 from langchain_qdrant import QdrantVectorStore
@@ -29,6 +30,8 @@ def read_files_in_folder(folder_path):
         if os.path.isfile(file_path) and file_path.endswith('.pdf'):
             try:
                 document = PyMuPDFLoader(file_path).load()
+                for doc in document:
+                    doc.metadata['id'] = hash_string(str(doc.metadata['page'])+doc.metadata['source'])
                 output += document
                 print('Adding file****', file_path)
             except Exception as e:
@@ -56,6 +59,16 @@ def chunk_and_upload(embeddings=embeddings, folder_path=PDF_FOLDER, chunk_size=1
         api_key=os.environ["QDRANT_API_KEY"],
         collection_name=collection_name,
     )
+    
+def hash_string(input_string, algorithm='sha256'):
+    # Convert the input string to bytes
+    input_bytes = input_string.encode('utf-8')
+
+    hash_object = hashlib.new(algorithm)
+    
+    hash_object.update(input_bytes)
+    
+    return hash_object.hexdigest()
 
 if __name__ == '__main__':
     chunk_and_upload()
