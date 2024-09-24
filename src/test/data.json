@@ -1,0 +1,53 @@
+[
+    {
+        "context": "Patient presents with persistent cough lasting 3 weeks and reports fatigue. No fever or chills. Recent chest X-ray shows no abnormalities. Patient has a history of seasonal allergies and is a non-smoker. Possible causes of persistent cough and fatigue include post-viral syndrome, chronic sinusitis, gastroesophageal reflux disease (GERD), or less commonly, early-stage chronic obstructive pulmonary disease (COPD).",
+        "question": "What could be causing my persistent cough and fatigue?",
+        "outcontext":"Patient dietary preferences: Prefers vegetarian meals. Enjoys spicy food but avoids dairy. Recently started taking a multivitamin supplement. Exercises 3 times a week, mainly jogging and yoga."
+    },
+    {
+        "context": "According to tenancy laws in most jurisdictions, landlords must provide reasonable notice (typically 24-48 hours) before entering a tenant's residence, except in emergencies. Exceptions may include pre-arranged maintenance visits or when immediate entry is necessary to protect life or property. Unauthorized entry may be considered trespassing and a violation of the tenant's right to quiet enjoyment.",
+        "question": "Is it legal for my landlord to enter my apartment without notice?",
+        "outcontext":"Overview of property tax rates in various counties. Discussion of how property values are assessed and the appeal process for disputing property tax assessments."
+    },
+    {
+        "context": "The French Revolution (1789-1799) was caused by a combination of factors: 1) Economic crisis due to France's debt from supporting the American Revolution and poor harvests. 2) Social inequality between the nobility, clergy, and the common people. 3) Enlightenment ideas promoting individual rights and challenging monarchical authority. 4) Weak leadership under King Louis XVI. 5) The example set by the American Revolution.",
+        "question": "What were the main causes of the French Revolution?",
+        "outcontext":  "Detailed account of the Battle of Waterloo, including troop movements, key figures involved, and the aftermath of Napoleon's defeat."
+    },
+    {
+        "context": "Common reasons for printer Wi-Fi connection issues include: outdated printer firmware, incorrect Wi-Fi password entry, router firewall blocking the printer, printer too far from the router, or incompatible Wi-Fi security settings. Troubleshooting steps: 1) Verify Wi-Fi password. 2) Update printer firmware. 3) Move printer closer to router. 4) Check router firewall settings. 5) Ensure printer and router use compatible Wi-Fi security protocols (WPA2 recommended).",
+        "question": "Why won't my printer connect to my Wi-Fi network?",
+        "outcontext": "Comparison of different printer brands, including their print quality, ink efficiency, and customer service ratings. Discussion of the latest advancements in 3D printing technology."
+    },
+    {
+        "context": "Mediterranean Chicken Spinach Feta Bake: Ingredients: chicken breasts, fresh spinach, feta cheese, olive oil, garlic, lemon juice, oregano. Instructions: Preheat oven to 375°F. Sauté spinach and garlic. Layer chicken in baking dish, top with spinach and crumbled feta. Drizzle with olive oil, lemon juice, and sprinkle oregano. Bake for 25-30 minutes until chicken is cooked through.",
+        "question": "What can I make with chicken, spinach, and feta cheese?",
+        "outcontext": "Nutritional information for various types of cheese, including calcium content, fat percentage, and recommended serving sizes. History of cheese-making in different cultures."
+    },
+    {
+        "context": "Diversifying a retirement portfolio typically involves spreading investments across different asset classes to balance risk and return. A common strategy is the '60/40 rule': 60% stocks (for growth) and 40% bonds (for stability). However, modern portfolios often include additional asset classes like real estate investment trusts (REITs), international stocks, and commodities. The specific allocation depends on factors such as age, risk tolerance, and retirement timeline.",
+        "question": "What are some common strategies for diversifying a retirement portfolio?",
+        "outcontext":"Current interest rates for savings accounts and certificates of deposit (CDs) at major banks. Explanation of how compound interest works and the Rule of 72."
+
+    },
+    {
+        "context": "Top attractions in Tokyo for a 3-day trip: Day 1: Senso-ji Temple in Asakusa, Tokyo Skytree, and Akihabara for electronics and anime culture. Day 2: Meiji Shrine, Harajuku for youth fashion, and Shibuya Crossing. Day 3: Tsukiji Outer Market for sushi breakfast, Imperial Palace gardens, and teamLab Borderless digital art museum. Don't miss: trying ramen at a local shop, experiencing a Japanese onsen (hot spring), and visiting a cat cafe.",
+        "question": "What are the must-see attractions in Tokyo for a 3-day trip?",
+        "outcontext":  "Information about Tokyo's public transportation system, including subway lines, bus routes, and the Japan Rail Pass. Tips for navigating rush hour and using IC cards for payment."
+    },
+    {
+        "context": "Critically acclaimed science fiction movies from the 1980s include: 1) 'Blade Runner' (1982) - neo-noir dystopian future, directed by Ridley Scott. 2) 'E.T. the Extra-Terrestrial' (1982) - Steven Spielberg's beloved alien story. 3) 'The Terminator' (1984) - James Cameron's time-traveling cyborg thriller. 4) 'Aliens' (1986) - action-packed sequel directed by James Cameron. 5) 'Brazil' (1985) - Terry Gilliam's surreal bureaucratic nightmare.",
+        "question": "Can you suggest some critically acclaimed science fiction movies from the 1980s?",
+        "outcontext": "Behind-the-scenes information about the making of Star Wars, including special effects techniques, casting decisions, and merchandising strategies."
+    },
+    {
+        "context": "Plants that thrive in partial shade and sandy soil: 1) Hostas - variety of sizes and colors, low maintenance. 2) Astilbe - feathery flowers, prefers moist soil but tolerates sand if watered regularly. 3) Coral Bells (Heuchera) - colorful foliage, drought-tolerant once established. 4) Ferns - various species adapt well to sandy soil, prefer consistent moisture. 5) Liriope - grass-like foliage, purple flower spikes, tolerates poor soil conditions.",
+        "question": "Which plants thrive in partial shade and sandy soil?",
+        "outcontext": "Step-by-step guide for building raised garden beds, including materials needed, optimal dimensions, and soil mixture recommendations."
+    },
+    {
+        "context": "The subjunctive mood in Spanish is used to express doubt, emotion, desire, or uncertainty. It's often triggered by certain phrases or conjunctions. For example:\nDoubt: 'No creo que sea difícil' (I don't think it's difficult)\nEmotion: 'Me alegra que vengas' (I'm glad you're coming)\nDesire: 'Quiero que estudies más' (I want you to study more)\nUncertainty: 'Tal vez llueva mañana' (It might rain tomorrow)\nThe subjunctive often appears in subordinate clauses following 'que' when the main clause expresses subjectivity.",
+        "question": "How do I use the subjunctive mood in Spanish?",
+        "outcontext": "Overview of Spanish dialects in different countries, including pronunciation differences, unique vocabulary, and common expressions used in various regions."
+    }
+]

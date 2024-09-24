@@ -1,0 +1,6 @@
+__pycache__/
+.env
+Blueprint-for-an-AI-Bill-of-Rights.pdf
+NIST.AI.600-1.pdf
+*.pdf
+.DS_Store
