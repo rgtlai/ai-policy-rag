@@ -9,3 +9,5 @@ client = QdrantClient(
 )
 
 client.delete_collection(collection_name=os.environ["QDRANT_COLLECTION"])
+client.delete_collection(collection_name=os.environ["QDRANT_COLLECTION_FT"])
+client.delete_collection(collection_name=os.environ["QDRANT_COLLECTION_FT_500"])

@@ -15,15 +15,74 @@ For first pass I decided to use the RecursiveCharacterTextSplitter with a chunk 
 ```
 
 ## 2. How did you choose your stack, and why did you select each tool the way you did?
-That is a good question. There are a  number of choices for I choose Langgraph with Langchain as the overall architecture for the two agents. For the vectorstore I choose QDrant as it is an efficient, fast vectorstore that we will store the documents that have been chunked.
 
-[Langgraph](./src/agents/output.jpeg)
+Great question. When selecting our stack, we evaluated several options, ultimately choosing a combination of LangGraph and LangChain as the core architecture for our two-agent system.
 
+For the vector store, we opted for Qdrant due to its efficiency and speed in handling vector-based storage. This is crucial for managing and retrieving chunked document data. On the front end, we utilized Chainlit to provide an interactive UI for users to engage with the application. The entire system is deployed on Hugging Face, which simplifies deployment and scalability. Also we first used the "text-embedding-3-small" embedding model by Open AI for the intial setup for this stack.
 
+LangChain was essential in allowing us to build chains of actions, such as retrieval, prompt enhancement, and generating responses using a Large Language Model (LLM). In our case, we’re using GPT-4o, which is a top-tier LLM for most use cases.
 
-## 3. What conclusions can you draw about performance and effectiveness of your pipeline with this information? We tested the performance 
+![Langgraph](./src/agents/output.jpeg)
 
-Below is the table results:
+The diagram above illustrates our two-agent architecture. By using LangGraph, we designed the system with a graph-like flow, where each node represents an agent. In a typical Retrieval-Augmented Generation (RAG) setup, a user’s query triggers data retrieval from the vector database based on vector embedding similarity. However, since our application is built as a chatbot (via Chainlit), users may follow up with additional questions that relate to the already retrieved context. It would be inefficient to retrieve the same context repeatedly for each follow-up. Moreover, users might input statements that aren't queries at all.
+
+To address these cases, we designed a "context agent" that determines when a new retrieval is needed. It only triggers retrieval when a fresh query is received that can't be answered with the current context. The "chatrag agent" then generates the response and performs any necessary retrieval.
+
+We also implemented streaming through LangGraph/LangChain's astream_events, enabling the application to provide faster response times.
+
+## 3. What conclusions can you draw about performance and effectiveness of your pipeline with this information? 
+
+### Evaluation Metrics
+
+| Metric              | Score  |
+|---------------------|--------|
+| Faithfulness        | 0.9638 |
+| Answer Relevancy    | 0.9650 |
+| Context Recall      | 1.0000 |
+| Context Precision   | 0.8278 |
+| Answer Correctness  | 0.8136 |
+
+### Interpretation of Results
+
+#### Faithfulness (0.9638)
+- This high score indicates that the system's responses are highly consistent with the provided context.
+- The RAG model is doing an excellent job of staying true to the information in the knowledge base.
+
+#### Answer Relevancy (0.9650)
+- The very high relevancy score suggests that the system is providing answers that are closely aligned with the questions asked.
+- Users are likely to find the responses pertinent to their queries.
+
+#### Context Recall (1.0000)
+- A perfect score in context recall is exceptional, indicating that the system is retrieving all relevant information from the knowledge base for each query.
+- This suggests that the retrieval component of the RAG system is highly effective.
+
+#### Context Precision (0.8278)
+- While good, this score is lower than the other metrics, suggesting that the system sometimes retrieves more information than necessary.
+- There might be room for improvement in fine-tuning the retrieval process to be more precise.
+
+#### Answer Correctness (0.8136)
+- This score, while good, indicates that there's some room for improvement in the accuracy of the answers provided.
+- It's the lowest score among the metrics, suggesting that this could be a primary area of focus for enhancement.
+
+### Conclusions and Recommendations
+
+1. **Overall Performance**: The RAG system is performing very well, with particularly strong results in faithfulness, relevancy, and recall. This indicates a robust and reliable system that users can trust for accurate information retrieval.
+
+2. **Strengths**: 
+   - The perfect context recall score is a significant achievement, ensuring comprehensive information retrieval.
+   - High faithfulness and relevancy scores indicate that the system provides responses that are both accurate and on-topic.
+
+3. **Areas for Improvement**:
+   - Focus on enhancing context precision. This could involve refining the retrieval algorithm to be more selective in the information it pulls from the knowledge base.
+   - Work on improving answer correctness. This might require fine-tuning the language model or improving the way retrieved context is utilized in generating answers.
+
+4. **Next Steps**:
+   - Conduct a detailed error analysis on instances where answer correctness was lower to identify patterns or specific types of questions that are challenging for the system.
+   - Experiment with different retrieval mechanisms or parameters to improve context precision without sacrificing recall.
+   - Consider implementing a confidence scoring system for answers, potentially allowing the system to request human intervention for low-confidence responses.
+   - Regularly update and refine the knowledge base to ensure the most current and accurate information is available to the system.
+
+5. **User Impact**: Based on these metrics, users are likely to have a very positive experience with the system, receiving relevant and faithful answers. However, continued work on answer correctness will further enhance user trust and satisfaction.
 
 
 ## 4. How did you choose the embedding model for this application? 

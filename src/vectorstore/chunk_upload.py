@@ -6,15 +6,22 @@ from langchain_qdrant import QdrantVectorStore
 from langchain.document_loaders import PyMuPDFLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 import tiktoken
+from sentence_transformers import SentenceTransformer
+from langchain.embeddings import HuggingFaceEmbeddings
+from qdrant_client.http import models
+from qdrant_client import QdrantClient
 load_dotenv()
 embeddings = OpenAIEmbeddings(model="text-embedding-3-small")
+embeddings_ft = HuggingFaceEmbeddings(model_name="rgtlai/ai-policy-ft")
 PDF_FOLDER = os.path.abspath(os.path.join('.', 'pdfs'))
+
 
 def tiktoken_len(text):
     tokens = tiktoken.encoding_for_model(os.environ["OPENAI_MODEL"]).encode(
         text,
     )
     return len(tokens)
+
 
 def read_files_in_folder(folder_path):
     # Ensure the folder path exists
@@ -31,7 +38,8 @@ def read_files_in_folder(folder_path):
             try:
                 document = PyMuPDFLoader(file_path).load()
                 for doc in document:
-                    doc.metadata['id'] = hash_string(str(doc.metadata['page'])+doc.metadata['source'])
+                    doc.metadata['id'] = hash_string(
+                        str(doc.metadata['page'])+doc.metadata['source'])
                 output += document
                 print('Adding file****', file_path)
             except Exception as e:
@@ -41,7 +49,8 @@ def read_files_in_folder(folder_path):
 
 
 def chunk_and_upload(embeddings=embeddings, folder_path=PDF_FOLDER, chunk_size=1200, chunk_overlap=100, collection_name=os.environ["QDRANT_COLLECTION"]):
-    print(f'Chunking uploading to folder {folder_path} using embedding {type(embeddings)} ')
+    print(
+        f'Chunking uploading to folder {folder_path} using embedding {type(embeddings)} ')
     documents = read_files_in_folder(folder_path)
     # use recursive character splitting
     text_splitter = RecursiveCharacterTextSplitter(
@@ -49,8 +58,9 @@ def chunk_and_upload(embeddings=embeddings, folder_path=PDF_FOLDER, chunk_size=1
         chunk_overlap=chunk_overlap,
         length_function=tiktoken_len,
     )
-    #for documents in documentFiles:
+    # for documents in documentFiles:
     split_chunks = text_splitter.split_documents(documents)
+
     QdrantVectorStore.from_documents(
         split_chunks,
         embeddings,
@@ -59,16 +69,21 @@ def chunk_and_upload(embeddings=embeddings, folder_path=PDF_FOLDER, chunk_size=1
         api_key=os.environ["QDRANT_API_KEY"],
         collection_name=collection_name,
     )
-    
+
+
+
 def hash_string(input_string, algorithm='sha256'):
     # Convert the input string to bytes
     input_bytes = input_string.encode('utf-8')
 
     hash_object = hashlib.new(algorithm)
-    
+
     hash_object.update(input_bytes)
-    
+
     return hash_object.hexdigest()
+
 
 if __name__ == '__main__':
     chunk_and_upload()
+    chunk_and_upload(embeddings=embeddings_ft, collection_name=os.environ["QDRANT_COLLECTION_FT"])
+    chunk_and_upload(embeddings=embeddings_ft, chunk_size=500, chunk_overlap=100, collection_name=os.environ["QDRANT_COLLECTION_FT_500"])
