@@ -1,4 +1,5 @@
 '''
+Tests are invalid. Need to be refactored.
 This tests the context agent. If the last user input is a question not related then it should return new_context as True. If the last user input is not a question or if it is a question that can be answered by the current context then new_context is False.
 '''
 
@@ -13,7 +14,7 @@ current_dir = os.path.dirname(os.path.abspath(__file__))
 sys_dir = os.path.abspath(os.path.join(current_dir, '../..'))
 # Get the parent directory
 sys.path.append(sys_dir)
-from src.agents.context_agent import ContextAgent
+from src.agents.chat_agent import ChatAgent
 from src.agents.state import State
 
 load_dotenv()
@@ -40,7 +41,7 @@ class TestContextAgent(unittest.TestCase):
         
     def test_should_request_context(self):
         graph = StateGraph(State)
-        agent = ContextAgent(llm=llm)
+        agent = ChatAgent(llm=llm)
         graph.add_node('agent', agent)
         graph.set_entry_point('agent')
         graph.add_edge('agent', END)
@@ -51,7 +52,7 @@ class TestContextAgent(unittest.TestCase):
             
     def test_should_not_request_for_non_query(self):
         graph = StateGraph(State)
-        agent = ContextAgent(llm=llm)
+        agent = ChatAgent(llm=llm)
         graph.add_node('agent', agent)
         graph.set_entry_point('agent')
         graph.add_edge('agent', END)

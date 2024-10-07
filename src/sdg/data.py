@@ -18,7 +18,6 @@ documents = read_files_in_folder(PDF_FOLDER)
 generator_llm = ChatOpenAI(model="gpt-3.5-turbo")
 critic_llm = ChatOpenAI(model="gpt-4o-mini")
 embeddings = OpenAIEmbeddings(model="text-embedding-3-small")
-#3embeddings_ft = HuggingFaceEmbeddings(model_name="rgtlai/ai-policy-ft")
 
 generator = TestsetGenerator.from_langchain(
     generator_llm,

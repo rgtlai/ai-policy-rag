@@ -40,6 +40,7 @@ async def main(message):
 
     async for event in astream:
         if event['event'] == "on_chat_model_stream":
+            print('EVENT*****', event)
             data = event["data"]
             if data["chunk"].content:
                 await msg.stream_token(data["chunk"].content)
